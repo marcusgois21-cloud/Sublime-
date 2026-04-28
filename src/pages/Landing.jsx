@@ -412,6 +412,7 @@ export default function Landing({ onRegister }) {
         transition={{ delay: 0.6 }}
         style={{ marginBottom: '3rem' }}
       >
+        {/* Título */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           gap: '6px', marginBottom: '1.2rem',
@@ -423,59 +424,64 @@ export default function Landing({ onRegister }) {
           <Zap size={12} color="#a855f7" />
         </div>
 
+        {/* Container visual do countdown */}
         <div style={{
-          display: 'flex', gap: 'clamp(8px, 3vw, 18px)',
-          alignItems: 'center', justifyContent: 'center',
+          background: 'rgba(168,85,247,0.05)',
+          border: '1px solid rgba(168,85,247,0.18)',
+          borderRadius: '20px',
+          padding: 'clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem)',
+          position: 'relative',
+          overflow: 'hidden',
         }}>
-          <Digit value={d} label="dias" />
-          <span style={{
-            color: 'rgba(168,85,247,0.7)',
-            fontFamily: "'Black Ops One', cursive",
-            fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
-            lineHeight: 1,
-            marginBottom: '20px',
-          }}>:</span>
-          <Digit value={h} label="horas" />
-          <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
-          <Digit value={m} label="min" />
-          <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
-          <Digit value={s} label="seg" />
-        </div>
+          {/* shimmer top */}
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent)' }} />
 
-        {/* Data/hora abaixo dos dígitos */}
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          gap: '14px', marginTop: '1.4rem',
-        }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.3))' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Calendar size={12} color="#a855f7" />
-            <span style={{
-              fontFamily: "'Rajdhani', sans-serif",
-              fontWeight: 700,
-              fontSize: '13px',
-              letterSpacing: '2px',
-              color: 'rgba(255,255,255,0.55)',
-            }}>
-              30 de Maio de 2025
-            </span>
+          {/* Dígitos */}
+          <div style={{
+            display: 'flex', gap: 'clamp(8px, 3vw, 18px)',
+            alignItems: 'center', justifyContent: 'center',
+            marginBottom: '1.4rem',
+          }}>
+            <Digit value={d} label="dias" />
+            <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
+            <Digit value={h} label="horas" />
+            <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
+            <Digit value={m} label="min" />
+            <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
+            <Digit value={s} label="seg" />
           </div>
-          <div style={{ width: '1px', height: '12px', background: 'rgba(168,85,247,0.4)' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Clock size={12} color="#ec4899" />
-            <span style={{
-              fontFamily: "'Black Ops One', cursive",
-              fontSize: '13px',
-              letterSpacing: '2px',
-              background: 'linear-gradient(90deg, #f0abfc, #ec4899)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>
-              19:30H
-            </span>
+
+          {/* Separador */}
+          <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.25), transparent)', marginBottom: '1rem' }} />
+
+          {/* Data e hora dentro do box */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: 'clamp(10px, 3vw, 22px)', flexWrap: 'wrap',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+              <Calendar size={13} color="#a855f7" />
+              <span style={{
+                fontFamily: "'Rajdhani', sans-serif", fontWeight: 700,
+                fontSize: 'clamp(12px, 2.5vw, 14px)', letterSpacing: '2px',
+                color: 'rgba(255,255,255,0.6)',
+              }}>
+                30 de Maio · 2025
+              </span>
+            </div>
+            <div style={{ width: '1px', height: '14px', background: 'rgba(168,85,247,0.4)' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+              <Clock size={13} color="#ec4899" />
+              <span style={{
+                fontFamily: "'Black Ops One', cursive",
+                fontSize: 'clamp(12px, 2.5vw, 15px)', letterSpacing: '2px',
+                background: 'linear-gradient(90deg, #f0abfc, #ec4899)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              }}>
+                19:30H
+              </span>
+            </div>
           </div>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(168,85,247,0.3), transparent)' }} />
         </div>
       </motion.div>
 
