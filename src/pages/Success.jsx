@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { CheckCircle2, Calendar, Cake, Sparkles, PartyPopper, ArrowLeft, Clock } from 'lucide-react'
 
 function launchConfetti(container) {
   const COLORS = ['#a855f7','#ec4899','#f59e0b','#10b981','#3b82f6','#fbbf24','#fb7185','#f0abfc']
@@ -59,80 +60,79 @@ export default function Success({ name, onHome }) {
         transition={{ type: 'spring', stiffness: 120, damping: 10 }}
         style={{ width: '100%', maxWidth: '480px', position: 'relative', zIndex: 3 }}
       >
-        {/* Emoji */}
+        {/* Check icon */}
         <motion.div
-          animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1.2, 1.2, 1.2, 1] }}
-          transition={{ delay: 0.3, duration: 1 }}
-          style={{ fontSize: 'clamp(4rem, 15vw, 7rem)', marginBottom: '1rem', display: 'block' }}
+          animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.15, 1.15, 1.15, 1.15, 1] }}
+          transition={{ delay: 0.3, duration: 0.9 }}
+          style={{ marginBottom: '1.2rem', display: 'flex', justifyContent: 'center' }}
         >
-          🎉
+          <div style={{
+            width: '80px', height: '80px', borderRadius: '50%',
+            background: 'linear-gradient(135deg, rgba(168,85,247,0.2), rgba(16,185,129,0.2))',
+            border: '2px solid rgba(16,185,129,0.5)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 0 30px rgba(16,185,129,0.25)',
+          }}>
+            <CheckCircle2 size={38} color="#10b981" strokeWidth={1.5} />
+          </div>
         </motion.div>
 
         <h1 style={{
           fontFamily: "'Black Ops One', cursive",
           fontSize: 'clamp(1.8rem, 6vw, 3rem)',
           background: 'linear-gradient(135deg, #f0abfc, #a855f7, #ec4899)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          marginBottom: '1rem',
-          lineHeight: 1.2,
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          marginBottom: '1rem', lineHeight: 1.2,
         }}>
           VOCÊ ESTÁ<br />CONFIRMADO!
         </h1>
 
-        <div style={{
-          fontFamily: "'Rajdhani', sans-serif",
-          fontSize: 'clamp(1.1rem, 3.5vw, 1.5rem)',
-          color: 'rgba(255,255,255,0.75)',
-          marginBottom: '0.6rem',
-          fontWeight: 500,
-        }}>
+        <div style={{ fontFamily: "'Rajdhani', sans-serif", fontSize: 'clamp(1rem, 3.5vw, 1.4rem)', color: 'rgba(255,255,255,0.65)', marginBottom: '4px', fontWeight: 500 }}>
           Bem-vindo ao Projeto X,
         </div>
         <div style={{
           fontFamily: "'Black Ops One', cursive",
           fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
-          background: 'linear-gradient(90deg, #f0abfc, #a855f7)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
+          background: 'linear-gradient(90deg, #fbbf24, #f0abfc, #a855f7)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           marginBottom: '2rem',
+          filter: 'drop-shadow(0 0 10px rgba(168,85,247,0.4))',
         }}>
           {name}!
         </div>
 
         {/* Info card */}
         <div style={{
-          background: 'rgba(168,85,247,0.08)',
-          border: '1px solid rgba(168,85,247,0.25)',
-          borderRadius: '12px',
-          padding: '1.5rem',
-          marginBottom: '2rem',
-          position: 'relative',
-          overflow: 'hidden',
+          background: 'rgba(168,85,247,0.06)', border: '1px solid rgba(168,85,247,0.2)',
+          borderRadius: '16px', padding: '1.5rem', marginBottom: '2rem',
+          position: 'relative', overflow: 'hidden',
         }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, transparent, #a855f7, transparent)' }} />
-          <div style={{ fontFamily: "'Rajdhani', sans-serif", fontSize: '11px', letterSpacing: '3px', color: '#c084fc', textTransform: 'uppercase', marginBottom: '1rem' }}>
-            Detalhes do Evento
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent)' }} />
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '7px', justifyContent: 'center', fontFamily: "'Rajdhani', sans-serif", fontSize: '10px', letterSpacing: '3px', color: '#c084fc', textTransform: 'uppercase', marginBottom: '1.2rem' }}>
+            <Sparkles size={11} /> Detalhes do Evento <Sparkles size={11} />
           </div>
+
           {[
-            { icon: '📅', label: 'Data', value: '19 de Julho · 2025' },
-            { icon: '🎂', label: 'Aniversariante', value: 'Marcus' },
-            { icon: '🔮', label: 'Evento', value: 'Projeto X' },
+            { icon: <Calendar size={14} />, label: 'Data', value: '30 de Maio · 2025' },
+            { icon: <Clock size={14} />, label: 'Horário', value: '19:00h' },
+            { icon: <Cake size={14} />, label: 'Aniversariante', value: 'Marcus' },
+            { icon: <PartyPopper size={14} />, label: 'Evento', value: 'Projeto X' },
           ].map(({ icon, label, value }) => (
-            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-              <span style={{ fontFamily: "'Inter'", fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>{icon} {label}</span>
+            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '7px', fontFamily: "'Inter'", fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>
+                <span style={{ color: '#a855f7' }}>{icon}</span>{label}
+              </span>
               <span style={{ fontFamily: "'Rajdhani', sans-serif", fontSize: '14px', fontWeight: 600, color: '#fff' }}>{value}</span>
             </div>
           ))}
-          <div style={{ marginTop: '1rem', fontFamily: "'Inter'", fontSize: '12px', color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>
-            Os organizadores entrarão em contato com mais detalhes sobre o local e horário. Fique ligado!
+          <div style={{ marginTop: '1rem', fontFamily: "'Inter'", fontSize: '12px', color: 'rgba(255,255,255,0.3)', lineHeight: 1.7 }}>
+            Os organizadores entrarão em contato com mais detalhes sobre o local. Fique ligado! 🔥
           </div>
         </div>
 
-        <button className="btn-primary" onClick={onHome} style={{ width: '100%', padding: '14px' }}>
-          ← Voltar ao Início
+        <button className="btn-primary" onClick={onHome} style={{ width: '100%', padding: '14px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '9px' }}>
+          <ArrowLeft size={16} /> Voltar ao Início
         </button>
       </motion.div>
     </div>
