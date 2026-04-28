@@ -441,6 +441,42 @@ export default function Landing({ onRegister }) {
           <span style={{ color: 'rgba(168,85,247,0.7)', fontFamily: "'Black Ops One', cursive", fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', lineHeight: 1, marginBottom: '20px' }}>:</span>
           <Digit value={s} label="seg" />
         </div>
+
+        {/* Data/hora abaixo dos dígitos */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          gap: '14px', marginTop: '1.4rem',
+        }}>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.3))' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Calendar size={12} color="#a855f7" />
+            <span style={{
+              fontFamily: "'Rajdhani', sans-serif",
+              fontWeight: 700,
+              fontSize: '13px',
+              letterSpacing: '2px',
+              color: 'rgba(255,255,255,0.55)',
+            }}>
+              30 de Maio de 2025
+            </span>
+          </div>
+          <div style={{ width: '1px', height: '12px', background: 'rgba(168,85,247,0.4)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Clock size={12} color="#ec4899" />
+            <span style={{
+              fontFamily: "'Black Ops One', cursive",
+              fontSize: '13px',
+              letterSpacing: '2px',
+              background: 'linear-gradient(90deg, #f0abfc, #ec4899)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              19:30H
+            </span>
+          </div>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(168,85,247,0.3), transparent)' }} />
+        </div>
       </motion.div>
 
       {/* ── CTA BUTTON ── */}
