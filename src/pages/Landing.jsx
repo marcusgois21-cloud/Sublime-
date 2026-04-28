@@ -6,7 +6,7 @@ import {
   Flame, Shield, Users, Lock,
 } from 'lucide-react'
 
-const PARTY_DATE = new Date('2025-05-30T19:30:00')
+const PARTY_DATE = new Date('2026-05-30T19:30:00')
 
 function useCountdown(target) {
   const calc = () => {
@@ -385,7 +385,7 @@ export default function Landing({ onRegister }) {
         }}
       >
         {[
-          { icon: <Calendar size={14} />, text: '30 de Maio · 2025' },
+          { icon: <Calendar size={14} />, text: '30 de Maio · 2026' },
           { icon: <Clock size={14} />, text: '19:30h' },
           { icon: <Ticket size={14} />, text: 'Convite Exclusivo' },
         ].map(({ icon, text }) => (
@@ -466,7 +466,7 @@ export default function Landing({ onRegister }) {
                 fontSize: 'clamp(12px, 2.5vw, 14px)', letterSpacing: '2px',
                 color: 'rgba(255,255,255,0.6)',
               }}>
-                30 de Maio · 2025
+                30 de Maio · 2026
               </span>
             </div>
             <div style={{ width: '1px', height: '14px', background: 'rgba(168,85,247,0.4)' }} />

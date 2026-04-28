@@ -114,7 +114,7 @@ export default function Success({ name, onHome }) {
           </div>
 
           {[
-            { icon: <Calendar size={14} />, label: 'Data', value: '30 de Maio · 2025' },
+            { icon: <Calendar size={14} />, label: 'Data', value: '30 de Maio · 2026' },
             { icon: <Clock size={14} />, label: 'Horário', value: '19:30h' },
             { icon: <Cake size={14} />, label: 'Aniversariante', value: 'Marcus' },
             { icon: <PartyPopper size={14} />, label: 'Evento', value: 'Projeto X' },
