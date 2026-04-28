@@ -89,122 +89,212 @@ function Digit({ value, label }) {
   )
 }
 
-/* ── Card de organizador ── */
-const ORG_COLORS = [
-  { from: '#fbbf24', to: '#f59e0b', glow: 'rgba(251,191,36,0.35)' },  // gold – Marcus
-  { from: '#a855f7', to: '#7c3aed', glow: 'rgba(168,85,247,0.3)' },
-  { from: '#ec4899', to: '#db2777', glow: 'rgba(236,72,153,0.3)' },
-  { from: '#3b82f6', to: '#2563eb', glow: 'rgba(59,130,246,0.3)' },
-  { from: '#10b981', to: '#059669', glow: 'rgba(16,185,129,0.3)' },
-  { from: '#f97316', to: '#ea580c', glow: 'rgba(249,115,22,0.3)' },
+/* ── Crew colors ── */
+const CREW_COLORS = [
+  { from: '#a855f7', to: '#7c3aed', glow: 'rgba(168,85,247,0.5)' },
+  { from: '#ec4899', to: '#db2777', glow: 'rgba(236,72,153,0.5)' },
+  { from: '#3b82f6', to: '#2563eb', glow: 'rgba(59,130,246,0.5)' },
+  { from: '#10b981', to: '#059669', glow: 'rgba(16,185,129,0.5)' },
+  { from: '#f97316', to: '#ea580c', glow: 'rgba(249,115,22,0.5)' },
 ]
 
-function OrgCard({ name, index, isBirthday }) {
+/* ── Marcus VIP hero ── */
+function MarcusVIP() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 16 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        position: 'relative',
+        background: 'linear-gradient(135deg, rgba(251,191,36,0.07) 0%, rgba(168,85,247,0.04) 50%, rgba(251,191,36,0.07) 100%)',
+        border: '1px solid rgba(251,191,36,0.22)',
+        borderRadius: '20px',
+        padding: 'clamp(1.6rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px',
+        overflow: 'hidden', marginBottom: '1rem',
+      }}
+    >
+      {/* radial gold glow behind avatar */}
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: 'translate(-50%, -60%)',
+        width: '220px', height: '220px',
+        background: 'radial-gradient(ellipse, rgba(251,191,36,0.13) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+      {/* top shimmer bar */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+        background: 'linear-gradient(90deg, transparent, #fbbf24 30%, #f0abfc 50%, #fbbf24 70%, transparent)',
+      }} />
+      {/* VIP pill */}
+      <div style={{
+        position: 'absolute', top: '14px', right: '14px',
+        padding: '3px 10px',
+        background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+        borderRadius: '999px',
+        fontFamily: "'Rajdhani', sans-serif",
+        fontSize: '9px', letterSpacing: '2px', fontWeight: 700, color: '#000',
+      }}>VIP</div>
+
+      {/* Triple-ring avatar */}
+      <div style={{ position: 'relative', width: '108px', height: '108px' }}>
+        {/* outer slow spin */}
+        <div className="animate-spin-slow" style={{
+          position: 'absolute', inset: '-10px', borderRadius: '50%',
+          background: 'conic-gradient(from 0deg, #fbbf24 0%, transparent 45%, #f59e0b 55%, transparent 100%)',
+        }} />
+        {/* inner reverse spin */}
+        <div style={{
+          animation: 'spin-slow 5s linear infinite reverse',
+          position: 'absolute', inset: '-4px', borderRadius: '50%',
+          background: 'conic-gradient(from 120deg, #ec4899 0%, transparent 40%, #a855f7 60%, transparent 100%)',
+        }} />
+        {/* avatar face */}
+        <div style={{
+          position: 'absolute', inset: '3px', borderRadius: '50%',
+          background: 'linear-gradient(160deg, #120028, #06000f)',
+          border: '1px solid rgba(251,191,36,0.25)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 2,
+        }}>
+          <span style={{
+            fontFamily: "'Black Ops One', cursive", fontSize: '2.2rem',
+            background: 'linear-gradient(135deg, #fbbf24, #fff9c4, #f59e0b)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            filter: 'drop-shadow(0 0 8px rgba(251,191,36,0.6))',
+          }}>M</span>
+        </div>
+        {/* crown top badge */}
+        <div style={{
+          position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)',
+          background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+          borderRadius: '50%', width: '26px', height: '26px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 0 14px rgba(251,191,36,0.9)', zIndex: 3,
+        }}>
+          <Crown size={13} color="#000" strokeWidth={2.5} />
+        </div>
+      </div>
+
+      {/* Name */}
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          fontFamily: "'Black Ops One', cursive",
+          fontSize: 'clamp(1.9rem, 7vw, 3.2rem)',
+          background: 'linear-gradient(135deg, #fbbf24 0%, #fff9c4 40%, #f59e0b 100%)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          letterSpacing: '4px', lineHeight: 1,
+          filter: 'drop-shadow(0 0 24px rgba(251,191,36,0.55))',
+        }}>MARCUS</div>
+        <div style={{
+          fontFamily: "'Rajdhani', sans-serif",
+          fontSize: '9px', letterSpacing: '5px', marginTop: '5px',
+          color: 'rgba(251,191,36,0.55)', textTransform: 'uppercase',
+        }}>The Birthday Boy</div>
+      </div>
+
+      {/* date badge */}
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: '8px',
+        padding: '6px 18px',
+        background: 'rgba(251,191,36,0.07)',
+        border: '1px solid rgba(251,191,36,0.22)',
+        borderRadius: '999px',
+      }}>
+        <Sparkles size={11} color="#fbbf24" />
+        <span style={{
+          fontFamily: "'Rajdhani', sans-serif",
+          fontSize: '12px', letterSpacing: '2.5px', fontWeight: 700, color: '#fbbf24',
+        }}>30 DE MAIO · 2026</span>
+        <Sparkles size={11} color="#fbbf24" />
+      </div>
+    </motion.div>
+  )
+}
+
+/* ── Crew member card ── */
+function CrewCard({ name, index }) {
   const [hovered, setHovered] = useState(false)
-  const c = ORG_COLORS[index % ORG_COLORS.length]
+  const c = CREW_COLORS[(index - 1) % CREW_COLORS.length]
   const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.9 + index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 20, scale: 0.88 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ delay: 1.0 + index * 0.09, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative',
+        flex: '1 1 100px', minWidth: '100px', maxWidth: '140px',
         background: hovered
-          ? `rgba(${isBirthday ? '251,191,36' : '168,85,247'},0.1)`
-          : 'rgba(255,255,255,0.04)',
-        border: `1px solid ${hovered ? c.from + '88' : 'rgba(255,255,255,0.08)'}`,
+          ? `linear-gradient(135deg, ${c.from}14, ${c.to}08)`
+          : 'rgba(255,255,255,0.03)',
+        border: `1px solid ${hovered ? c.from + '55' : 'rgba(255,255,255,0.06)'}`,
         borderRadius: '16px',
-        padding: '1.2rem 1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '10px',
+        padding: '1.2rem 0.8rem',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
         cursor: 'default',
-        transition: 'all 0.3s ease',
-        boxShadow: hovered ? `0 0 24px ${c.glow}` : 'none',
-        flex: '1 1 120px',
-        minWidth: '110px',
-        maxWidth: '160px',
+        transition: 'all 0.35s ease',
+        boxShadow: hovered ? `0 0 28px ${c.glow}, 0 0 60px ${c.glow.replace('0.5', '0.12')}` : 'none',
+        overflow: 'hidden',
       }}
     >
-      {/* Avatar ring */}
-      <div style={{ position: 'relative' }}>
+      {/* top accent */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+        background: hovered ? `linear-gradient(90deg, transparent, ${c.from}, transparent)` : 'transparent',
+        transition: 'background 0.35s',
+      }} />
+
+      {/* spinning-ring avatar */}
+      <div style={{ position: 'relative', width: '60px', height: '60px' }}>
         <div style={{
-          position: 'absolute', inset: '-3px',
-          borderRadius: '50%',
-          background: `linear-gradient(135deg, ${c.from}, ${c.to})`,
-          opacity: hovered ? 1 : 0.5,
-          transition: 'opacity 0.3s',
+          animation: `spin-slow ${hovered ? '2.5s' : '10s'} linear infinite`,
+          position: 'absolute', inset: '-2px', borderRadius: '50%',
+          background: `conic-gradient(from 0deg, ${c.from}, transparent 50%, ${c.to}, transparent 80%)`,
         }} />
         <div style={{
-          position: 'relative',
-          width: '52px', height: '52px',
-          borderRadius: '50%',
-          background: '#06000f',
+          position: 'absolute', inset: '2px', borderRadius: '50%',
+          background: '#06000f', zIndex: 1,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '2px',
         }}>
           <span style={{
-            fontFamily: "'Black Ops One', cursive",
-            fontSize: '1rem',
+            fontFamily: "'Black Ops One', cursive", fontSize: '1.1rem',
             background: `linear-gradient(135deg, ${c.from}, ${c.to})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            {initials}
-          </span>
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          }}>{initials}</span>
         </div>
-
-        {isBirthday && (
-          <div style={{
-            position: 'absolute', top: '-6px', right: '-6px',
-            background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-            borderRadius: '50%',
-            width: '20px', height: '20px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 10px rgba(251,191,36,0.6)',
-          }}>
-            <Crown size={11} color="#000" strokeWidth={2.5} />
-          </div>
-        )}
+        {/* status dot */}
+        <div style={{
+          position: 'absolute', bottom: '2px', right: '2px',
+          width: '10px', height: '10px', borderRadius: '50%',
+          background: c.from, border: '2px solid #06000f',
+          boxShadow: `0 0 7px ${c.from}`, zIndex: 2,
+        }} />
       </div>
 
-      {/* Name */}
+      {/* name */}
       <div style={{
-        fontFamily: "'Rajdhani', sans-serif",
-        fontWeight: 700,
-        fontSize: '0.82rem',
+        fontFamily: "'Rajdhani', sans-serif", fontWeight: 700, fontSize: '0.8rem',
         letterSpacing: '0.5px',
-        color: hovered ? '#fff' : 'rgba(255,255,255,0.7)',
-        textAlign: 'center',
-        lineHeight: 1.2,
-        transition: 'color 0.3s',
-      }}>
-        {name}
-      </div>
+        color: hovered ? '#fff' : 'rgba(255,255,255,0.6)',
+        textAlign: 'center', lineHeight: 1.2, transition: 'color 0.3s',
+      }}>{name}</div>
 
-      {/* Role badge */}
+      {/* badge */}
       <div style={{
-        display: 'inline-flex', alignItems: 'center', gap: '4px',
+        display: 'inline-flex', alignItems: 'center', gap: '3px',
         padding: '2px 8px',
-        background: `linear-gradient(135deg, ${c.from}22, ${c.to}22)`,
-        border: `1px solid ${c.from}44`,
+        background: `${c.from}16`, border: `1px solid ${c.from}35`,
         borderRadius: '999px',
-        fontSize: '9px',
-        fontFamily: "'Rajdhani', sans-serif",
-        letterSpacing: '1.5px',
-        textTransform: 'uppercase',
-        color: c.from,
+        fontFamily: "'Rajdhani', sans-serif", fontSize: '8px',
+        letterSpacing: '1.5px', textTransform: 'uppercase', color: c.from,
       }}>
-        {isBirthday
-          ? <><Crown size={8} />&nbsp;Aniversariante</>
-          : <><Star size={8} />&nbsp;Organizador</>
-        }
+        <Zap size={7} />CREW
       </div>
     </motion.div>
   )
@@ -526,71 +616,117 @@ export default function Landing({ onRegister }) {
         style={{ width: '100%', maxWidth: '680px' }}
       >
         {/* Section header */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: '14px',
-          marginBottom: '1.6rem',
-        }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.4))' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Shield size={13} color="#a855f7" />
-            <span style={{
-              fontFamily: "'Rajdhani', sans-serif",
-              fontSize: '10px', letterSpacing: '4px',
-              color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase',
-            }}>
-              Equipe Organizadora
-            </span>
-            <Shield size={13} color="#a855f7" />
+        <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '5px' }}>
+            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.45))' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+              <Flame size={13} color="#a855f7" />
+              <span style={{
+                fontFamily: "'Black Ops One', cursive",
+                fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
+                letterSpacing: '6px', color: '#c084fc',
+              }}>THE CREW</span>
+              <Flame size={13} color="#a855f7" />
+            </div>
+            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(168,85,247,0.45), transparent)' }} />
           </div>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(168,85,247,0.4), transparent)' }} />
+          <div style={{
+            fontFamily: "'Rajdhani', sans-serif",
+            fontSize: '9px', letterSpacing: '4px',
+            color: 'rgba(255,255,255,0.18)', textTransform: 'uppercase',
+          }}>
+            Classificado · Projeto X · 2026
+          </div>
         </div>
 
-        {/* Cards wrapper */}
+        {/* Outer panel */}
         <div style={{
-          background: 'rgba(255,255,255,0.02)',
-          border: '1px solid rgba(168,85,247,0.12)',
-          borderRadius: '20px',
-          padding: 'clamp(1.2rem, 3vw, 1.8rem)',
           position: 'relative',
+          background: 'rgba(4,0,14,0.7)',
+          border: '1px solid rgba(168,85,247,0.14)',
+          borderRadius: '24px',
+          padding: 'clamp(1.2rem, 3vw, 2rem)',
           overflow: 'hidden',
+          backdropFilter: 'blur(12px)',
         }}>
-          {/* corner glow */}
+          {/* top shimmer */}
           <div style={{
             position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.5), rgba(236,72,153,0.5), transparent)',
+            background: 'linear-gradient(90deg, transparent, #a855f7 30%, #ec4899 50%, #a855f7 70%, transparent)',
           }} />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.2), transparent)' }} />
+          {/* bottom shimmer */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.2), transparent)',
+          }} />
 
-          {/* Marcus spotlight */}
-          <div style={{ marginBottom: '1.2rem' }}>
-            <OrgCard name="Marcus" index={0} isBirthday />
+          {/* corner brackets */}
+          {[
+            { top: '10px', left: '10px', borderTop: true, borderLeft: true },
+            { top: '10px', right: '10px', borderTop: true, borderRight: true },
+            { bottom: '10px', left: '10px', borderBottom: true, borderLeft: true },
+            { bottom: '10px', right: '10px', borderBottom: true, borderRight: true },
+          ].map((b, i) => (
+            <div key={i} style={{
+              position: 'absolute',
+              top: b.top, bottom: b.bottom, left: b.left, right: b.right,
+              width: '18px', height: '18px',
+              borderTop: b.borderTop ? '2px solid rgba(168,85,247,0.35)' : 'none',
+              borderBottom: b.borderBottom ? '2px solid rgba(168,85,247,0.35)' : 'none',
+              borderLeft: b.borderLeft ? '2px solid rgba(168,85,247,0.35)' : 'none',
+              borderRight: b.borderRight ? '2px solid rgba(168,85,247,0.35)' : 'none',
+            }} />
+          ))}
+
+          {/* bg glow */}
+          <div style={{
+            position: 'absolute', top: '-40%', left: '50%', transform: 'translateX(-50%)',
+            width: '420px', height: '300px',
+            background: 'radial-gradient(ellipse, rgba(124,58,237,0.07) 0%, transparent 70%)',
+            pointerEvents: 'none',
+          }} />
+
+          {/* Marcus VIP */}
+          <MarcusVIP />
+
+          {/* Crew divider */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.2rem',
+          }}>
+            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.07))' }} />
+            <span style={{
+              fontFamily: "'Rajdhani', sans-serif",
+              fontSize: '9px', letterSpacing: '3px',
+              color: 'rgba(255,255,255,0.18)', textTransform: 'uppercase',
+            }}>
+              Equipe
+            </span>
+            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(255,255,255,0.07), transparent)' }} />
           </div>
 
-          {/* Other organizers */}
-          <div style={{
-            display: 'flex', flexWrap: 'wrap', gap: '10px',
-            justifyContent: 'center',
-          }}>
+          {/* Crew grid */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
             {ALL_ORGS.slice(1).map((org, i) => (
-              <OrgCard key={org.name} name={org.name} index={i + 1} isBirthday={false} />
+              <CrewCard key={org.name} name={org.name} index={i + 1} />
             ))}
           </div>
 
           {/* Footer */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            gap: '6px', marginTop: '1.4rem',
+            gap: '8px', marginTop: '1.6rem',
             paddingTop: '1.2rem',
-            borderTop: '1px solid rgba(255,255,255,0.05)',
+            borderTop: '1px solid rgba(255,255,255,0.04)',
           }}>
-            <Users size={12} color="rgba(255,255,255,0.2)" />
+            <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 6px #a855f7' }} />
             <span style={{
-              fontFamily: "'Inter'", fontSize: '11px',
-              color: 'rgba(255,255,255,0.2)', letterSpacing: '0.5px',
+              fontFamily: "'Rajdhani', sans-serif",
+              fontSize: '10px', letterSpacing: '3px',
+              color: 'rgba(255,255,255,0.18)', textTransform: 'uppercase',
             }}>
-              {ALL_ORGS.length} pessoas nessa missão
+              {ALL_ORGS.length} Membros · Projeto X · 2026
             </span>
-            <Music size={12} color="rgba(255,255,255,0.2)" />
+            <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#ec4899', boxShadow: '0 0 6px #ec4899' }} />
           </div>
         </div>
       </motion.div>
